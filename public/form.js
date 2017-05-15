@@ -22,17 +22,6 @@ $(document).ready(function() {
       }
     }
   });
-  
-  // $("#swtalert").click(function() {
-  //   console.log("hi");
-  //   swal({
-  //     title: "Error!",
-  //     text: "Here's my error message!",
-  //     type: "error",
-  //     confirmButtonText: "Cool"
-  //   });
-  // });
-
 });
 
 
@@ -54,18 +43,16 @@ new Vue({
     time: ""
   },
   methods: {
-    submitFeedback: function(){
+    // submitFeedback: function(){
 
-      // if (this.name == "" || this.email == "" || this.feedbackType == "" || this.likes == null || this.selected == "" || this.description == "") {
-      //   alert("Please fill all the fields...");
-      // }
-      // else{
-        alert("Feedback Details: \n Name: " + this.name + "\n Email: " + this.email + "\n Feedback Type: " + this.feedbackType + "\n You Like: " + this.likes + "\n Satisfaction: " + this.selected + "\n Recommend: " + this.recommend + "\n Satisfied: " + this.satisfied + "\n Outcome: " + this.outcome + "\n service: " + this.service + "\n Time: " + this.time + "\n Description: " + this.description);  
-      //}
-
-      
-      // + "\n File Name: " + this.screenshotFile
-    },
+    //   // if (this.name == "" || this.email == "" || this.feedbackType == "" || this.likes == null || this.selected == "" || this.description == "") {
+    //   //   alert("Please fill all the fields...");
+    //   // }
+    //   // else{
+    //     alert("Feedback Details: \n Name: " + this.name + "\n Email: " + this.email + "\n Feedback Type: " + this.feedbackType + "\n You Like: " + this.likes + "\n Satisfaction: " + this.selected + "\n Recommend: " + this.recommend + "\n Satisfied: " + this.satisfied + "\n Outcome: " + this.outcome + "\n service: " + this.service + "\n Time: " + this.time + "\n Description: " + this.description);  
+    //   //}
+    //   // + "\n File Name: " + this.screenshotFile
+    // },
 
     resetForm: function(){
       this.name = "";
@@ -78,33 +65,27 @@ new Vue({
   }
 });
 
-Vue.directive("select", {
-    "twoWay": true,
+// Vue.directive("select", {
+//     "twoWay": true,
 
-    "bind": function () {
-        $(this.el).material_select();
+//     "bind": function () {
+//         $(this.el).material_select();
 
-        var self = this;
+//         var self = this;
 
-        $(this.el).on('change', function() {
-            self.set($(self.el).val());
-        });
-    },
+//         $(this.el).on('change', function() {
+//             self.set($(self.el).val());
+//         });
+//     },
 
-    update: function (newValue, oldValue) {
-        $(this.el).val(newValue);
-    },
+//     update: function (newValue, oldValue) {
+//         $(this.el).val(newValue);
+//     },
 
-    "unbind": function () {
-        $(this.el).material_select('destroy');
-    }
-});
-
-
-
-
-
-
+//     "unbind": function () {
+//         $(this.el).material_select('destroy');
+//     }
+// });
 
 
 
@@ -138,7 +119,6 @@ $(document).ready(function(){
               type: "success",
             });
             $('#feedbackForm')[0].reset();
-            //location.reload();
           }
         });
       }else{
@@ -148,7 +128,6 @@ $(document).ready(function(){
           type: "error",
         });
       }
-
       return false;
     }else{
       var name = $('#feedbackForm #name');
@@ -170,7 +149,6 @@ $(document).ready(function(){
               type: "success",
             });
             $('#feedbackForm')[0].reset();
-            //location.reload();
           }
         });
       }else{
@@ -179,10 +157,7 @@ $(document).ready(function(){
           text: "Please fill all the required fields and try again",
           type: "error",
         });
-      }
-
-      
-
+      }     
       return false;
     }
   });
