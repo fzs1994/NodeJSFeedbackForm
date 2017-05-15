@@ -106,7 +106,7 @@ $(document).ready(function(){
 
       // [ {recommend: recommend.val()}, {satisfied: satisfied.val()}, {outcome: outcome.val()}, {service: service.val()}, {time: time.val()} ]
 
-      var userFeedback = {fullName: name.val(), email: email.val(), feedType: type.val(), genFeed: slidersValue };
+      var userFeedback = {fullName: name.val(), email: email.val(), feedType: type.val(), genFeed: { recommend: recommend.val(), satisfied: satisfied.val(), outcome: outcome.val(), service: service.val(), time: time.val() } };
 
       if(name.val() && email.val() && type.val()){
         $.ajax({
