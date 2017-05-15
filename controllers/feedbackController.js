@@ -16,7 +16,7 @@ var genFeedSchema = new mongoose.Schema({
   fullName: String,
   email: String,
   feedType: String,
-  genFeed: [{}]
+  genFeed: Object
 })
 
 //creating a model for todo
@@ -38,7 +38,6 @@ module.exports = function (app){
 	});
 
 	app.post('/genfeedback', urlencodedParser, function(req, res){
-		console.log(req.body.userFeedback);
 	   	//Get data from the view and pass it to the mongoose schema to store it.
 	    var newFeedBack = GenFeedback(req.body).save(function(err, data){
 	       if(err) throw err;
@@ -47,12 +46,19 @@ module.exports = function (app){
 	});
 
 	app.get('/getAll', urlencodedParser, function(req, res){
-		console.log(req.body.userFeedback);
 	   	//Get data from the view and pass it to the mongoose schema to store it.
-	    var newFeedBack = Feedback.find(function(err, data){
+	    var commFeedBack = Feedback.find(function(err, data){
 	       if(err) throw err;
 	       res.json(data);
 	    });
 	});
-	
+
+	app.get('/getGenAll', urlencodedParser, function(req, res){
+	   	//Get data from the view and pass it to the mongoose schema to store it.
+	    var commFeedBack = GenFeedback.find(function(err, data){
+	       if(err) throw err;
+	       res.json(data);
+	    });
+	});
+
 };

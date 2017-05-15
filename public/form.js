@@ -104,7 +104,9 @@ $(document).ready(function(){
       var time = $('#feedbackForm #time');
       var slidersValue = {recommend: recommend.val(), satisfied: satisfied.val(), outcome: outcome.val(), service: service.val(), time: time.val() }
 
-      var userFeedback = {fullName: name.val(), email: email.val(), feedType: type.val(), genFeed: slidersValue};
+      // [ {recommend: recommend.val()}, {satisfied: satisfied.val()}, {outcome: outcome.val()}, {service: service.val()}, {time: time.val()} ]
+
+      var userFeedback = {fullName: name.val(), email: email.val(), feedType: type.val(), genFeed: slidersValue };
 
       if(name.val() && email.val() && type.val()){
         $.ajax({
