@@ -9,7 +9,7 @@ $(document).ready(function() {
   });
   $("form").validate({
     submitHandler: function(form) {
-      console.log(form);
+      // console.log(form);
       return;
     },
     errorElement: 'div',
@@ -94,25 +94,24 @@ $(document).ready(function(){
   $('#feedbackForm').on('submit', function(){
 
     if(($('#feedbackForm [name=fType]:checked').val()) == "General Feedback"){
-      var name = $('#feedbackForm #name');
-      var email = $('#feedbackForm #email');
-      var type = $('#feedbackForm [name=fType]:checked');
-      var recommend = $('#feedbackForm #recommend');
-      var satisfied = $('#feedbackForm #satisfied');
-      var outcome = $('#feedbackForm #outcome');
-      var service = $('#feedbackForm #service');
-      var time = $('#feedbackForm #time');
-      var slidersValue = {recommend: recommend.val(), satisfied: satisfied.val(), outcome: outcome.val(), service: service.val(), time: time.val() }
-
+      var name = $('#feedbackForm #name').val();
+      var email = $('#feedbackForm #email').val();
+      var type = $('#feedbackForm [name=fType]:checked').val();
+      var recommend = $('#feedbackForm #recommend').val();
+      var satisfied = $('#feedbackForm #satisfied').val();
+      var outcome = $('#feedbackForm #outcome').val();
+      var service = $('#feedbackForm #service').val();
+      var time = $('#feedbackForm #time').val();
+      //var slidersValue = '{recommend: ' + recommend.val() + ', satisfied: ' + satisfied.val() +', outcome:' + outcome.val() + ', service: ' + service.val() + ', time: ' + time.val() + '}';
       // [ {recommend: recommend.val()}, {satisfied: satisfied.val()}, {outcome: outcome.val()}, {service: service.val()}, {time: time.val()} ]
 
-      var userFeedback = {fullName: name.val(), email: email.val(), feedType: type.val(), genFeed: { recommend: recommend.val(), satisfied: satisfied.val(), outcome: outcome.val(), service: service.val(), time: time.val() } };
+      //var userFeedback = {fullName: name.val(), email: email.val(), feedType: type.val(), genFeed: JSON.stringify(slidersValue) };
 
-      if(name.val() && email.val() && type.val()){
+      if(name && email && type){
         $.ajax({
           type: 'POST',
           url: '/genfeedback',
-          data: userFeedback,
+          data: {name, email, type, recommend, satisfied, outcome, service, time},
           success: function(data){
             //do something with the data via front-end framework
             swal({

@@ -16,7 +16,7 @@ var genFeedSchema = new mongoose.Schema({
   fullName: String,
   email: String,
   feedType: String,
-  genFeed: {}
+  genFeed: Object
 })
 
 //creating a model for todo
@@ -38,7 +38,19 @@ module.exports = function (app){
 
 	app.post('/genfeedback', urlencodedParser, function(req, res){
 	   	//Get data from the view and pass it to the mongoose schema to store it.
-	    var newFeedBack = GenFeedback(req.body).save(function(err, data){
+	   	var genFeedData = {
+	   		"fName": req.body.name,
+	   		"email": req.body.email,
+	   		"feedType": req.body.type,
+	   		"genFeed": {
+	   			"recommend": req.body.recommend,
+	   			"satisfied": req.body.satisfied,
+	   			"outcome": req.body.outcome,
+	   			"service": req.body.service,
+	   			"time": req.body.time,
+	   		}
+	   	}
+	    var newFeedBack = GenFeedback(genFeedData).save(function(err, data){
 	       if(err) throw err;
 	       res.json(data);
 	    });
