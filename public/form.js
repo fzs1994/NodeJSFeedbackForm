@@ -119,7 +119,7 @@ $(document).ready(function(){
               text: "Your feedback is subbmitted! We appreciate your feedback! Thanks.",
               type: "success",
             });
-            $('#feedbackForm')[0].reset();
+            $('#resetBtn').trigger('click');
           }
         });
       }else{
@@ -149,7 +149,7 @@ $(document).ready(function(){
               text: "Your feedback is subbmitted! We appreciate your feedback! Thanks.",
               type: "success",
             });
-            $('#feedbackForm')[0].reset();
+            $('#resetBtn').trigger('click');
           }
         });
       }else{
