@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $('select').material_select();
   $('.datepicker').pickadate({
-    selectMonths: true, 
+    selectMonths: true,
     selectYears: 15
   });
   $.validator.setDefaults({
@@ -23,6 +23,7 @@ $(document).ready(function() {
     }
   });
 
+  // DataTables
   $('#feedTable').DataTable();
   $('#genfeedTable').DataTable();
 });
@@ -52,7 +53,7 @@ new Vue({
     //   //   alert("Please fill all the fields...");
     //   // }
     //   // else{
-    //     alert("Feedback Details: \n Name: " + this.name + "\n Email: " + this.email + "\n Feedback Type: " + this.feedbackType + "\n You Like: " + this.likes + "\n Satisfaction: " + this.selected + "\n Recommend: " + this.recommend + "\n Satisfied: " + this.satisfied + "\n Outcome: " + this.outcome + "\n service: " + this.service + "\n Time: " + this.time + "\n Description: " + this.description);  
+    //     alert("Feedback Details: \n Name: " + this.name + "\n Email: " + this.email + "\n Feedback Type: " + this.feedbackType + "\n You Like: " + this.likes + "\n Satisfaction: " + this.selected + "\n Recommend: " + this.recommend + "\n Satisfied: " + this.satisfied + "\n Outcome: " + this.outcome + "\n service: " + this.service + "\n Time: " + this.time + "\n Description: " + this.description);
     //   //}
     //   // + "\n File Name: " + this.screenshotFile
     // },
@@ -68,34 +69,12 @@ new Vue({
   }
 });
 
-// Vue.directive("select", {
-//     "twoWay": true,
-
-//     "bind": function () {
-//         $(this.el).material_select();
-
-//         var self = this;
-
-//         $(this.el).on('change', function() {
-//             self.set($(self.el).val());
-//         });
-//     },
-
-//     update: function (newValue, oldValue) {
-//         $(this.el).val(newValue);
-//     },
-
-//     "unbind": function () {
-//         $(this.el).material_select('destroy');
-//     }
-// });
-
-
-
 $(document).ready(function(){
 
+  // Our main user form
   $('#feedbackForm').on('submit', function(){
 
+    // If the feedback type is  general feedback, then different schema to POST
     if(($('#feedbackForm [name=fType]:checked').val()) == "General Feedback"){
       var name = $('#feedbackForm #name').val();
       var email = $('#feedbackForm #email').val();
@@ -105,18 +84,15 @@ $(document).ready(function(){
       var outcome = $('#feedbackForm #outcome').val();
       var service = $('#feedbackForm #service').val();
       var time = $('#feedbackForm #time').val();
-      //var slidersValue = '{recommend: ' + recommend.val() + ', satisfied: ' + satisfied.val() +', outcome:' + outcome.val() + ', service: ' + service.val() + ', time: ' + time.val() + '}';
-      // [ {recommend: recommend.val()}, {satisfied: satisfied.val()}, {outcome: outcome.val()}, {service: service.val()}, {time: time.val()} ]
 
-      //var userFeedback = {fullName: name.val(), email: email.val(), feedType: type.val(), genFeed: JSON.stringify(slidersValue) };
-
+      // Check if required fields are filled else show error
       if(name && email && type){
         $.ajax({
           type: 'POST',
           url: '/genfeedback',
           data: {name, email, type, recommend, satisfied, outcome, service, time},
           success: function(data){
-            //do something with the data via front-end framework
+            //Show success message
             swal({
               title: "Success!",
               text: "Your feedback is subbmitted! We appreciate your feedback! Thanks.",
@@ -134,19 +110,21 @@ $(document).ready(function(){
       }
       return false;
     }else{
+      // Other feedback type schema
       var name = $('#feedbackForm #name');
       var email = $('#feedbackForm #email');
       var type = $('#feedbackForm [name=fType]:checked');
       var desc = $('#feedbackForm #bio');
       var userFeedback = {fullName: name.val(), email: email.val(), feedType: type.val(), description: desc.val()};
 
+      // Check if required fields are filled else show error
       if(name.val() && email.val() && type.val() && desc.val()){
         $.ajax({
           type: 'POST',
           url: '/feedback',
           data: userFeedback,
           success: function(data){
-            //do something with the data via front-end framework
+            //Show success message
             swal({
               title: "Success!",
               text: "Your feedback is subbmitted! We appreciate your feedback! Thanks.",
@@ -161,7 +139,7 @@ $(document).ready(function(){
           text: "Please fill all the required fields and try again",
           type: "error",
         });
-      }     
+      }
       return false;
     }
   });

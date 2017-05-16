@@ -1,10 +1,11 @@
+// Requirements
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 //Connect to mongoose database: online mLab database
 mongoose.connect('mongodb://objsonresume:ob1jsonresume@ds139761.mlab.com:39761/feedbackform');
 
-//Creating a schema that contains only 1 field as datatype string
+//Creating a schema that contains fields of Other types of Feedbacks
 var feedSchema = new mongoose.Schema({
   fullName: String,
   email: String,
@@ -12,6 +13,7 @@ var feedSchema = new mongoose.Schema({
   description: String
 })
 
+//Creating a schema that contains fields of General Feedback
 var genFeedSchema = new mongoose.Schema({
   fullName: String,
   email: String,
@@ -19,15 +21,19 @@ var genFeedSchema = new mongoose.Schema({
   genFeed: Object
 })
 
-//creating a model for todo
+//creating a model for other type of feedback
 var Feedback = mongoose.model("Feedback", feedSchema);
 
+//creating a model for General type of feedback
 var GenFeedback = mongoose.model("GenFeedback", genFeedSchema);
 
+// Required bodyparser url object
 var urlencodedParser = bodyParser.urlencoded({extended:false});
 
+// Exporting objects to server.js
 module.exports = function (app){
 
+  // Saving other feedback in remote MongoDB. Called using AJAX.
 	app.post('/feedback', urlencodedParser, function(req, res){
 	   	//Get data from the view and pass it to the mongoose schema to store it.
 	    var newFeedBack = Feedback(req.body).save(function(err, data){
@@ -36,6 +42,7 @@ module.exports = function (app){
 	    });
 	});
 
+  // Saving general feedback in remote MongoDB. Called using AJAX.
 	app.post('/genfeedback', urlencodedParser, function(req, res){
 	   	//Get data from the view and pass it to the mongoose schema to store it.
 	   	var genFeedData = {
@@ -56,17 +63,36 @@ module.exports = function (app){
 	    });
 	});
 
-	app.get('/getAll', urlencodedParser, function(req, res){
-	   	//Get data from the view and pass it to the mongoose schema to store it.
+  // API to get all Other Feedbacks
+  app.get('/api/getAll', urlencodedParser, function(req, res){
+	   	//Get all ther Other Feedbacks from MongoDB and return JSON data.
 	    var commFeedBack = Feedback.find(function(err, data){
 	       if(err) throw err;
-	       res.render('showAll', {feedbacks: data})
-	       // res.json(data);
+	       res.json(data);
 	    });
 	});
 
+  // API to get all General Feedbacks
+	app.get('/api/getGenAll', urlencodedParser, function(req, res){
+	   	//Get all ther General Feedbacks from MongoDB and return JSON data.
+	    var commFeedBack = GenFeedback.find(function(err, data){
+	       if(err) throw err;
+	       res.json(data);
+	    });
+	});
+
+  // Rendering Other Feedbacks data into view table
+	app.get('/getAll', urlencodedParser, function(req, res){
+	   	//Get all ther Other Feedbacks from MongoDB and return data to view.
+	    var commFeedBack = Feedback.find(function(err, data){
+	       if(err) throw err;
+	       res.render('showAll', {feedbacks: data})
+	    });
+	});
+
+  // Rendering General Feedbacks data into view table
 	app.get('/getGenAll', urlencodedParser, function(req, res){
-	   	//Get data from the view and pass it to the mongoose schema to store it.
+	   	//Get all ther General Feedbacks from MongoDB and return data to view.
 	    var commFeedBack = GenFeedback.find(function(err, data){
 	       if(err) throw err;
 	       res.render('showGenAll', {feedbacks: data})
