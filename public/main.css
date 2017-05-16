@@ -97,3 +97,12 @@ div.error {
   background-color: #292929;
   color: #fff;
 }
+
+
+td, th{
+  border-radius: 0;
+}
+
+.tableHeader > tr{
+  border-bottom: none !important;
+}
