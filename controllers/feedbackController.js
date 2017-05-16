@@ -99,4 +99,10 @@ module.exports = function (app){
 	    });
 	});
 
+  // Rendering General Feedbacks data into view table
+	app.get('/login', urlencodedParser, function(req, res){
+	   	//Get all ther General Feedbacks from MongoDB and return data to view.
+	    res.render('login')
+	});
+
 };

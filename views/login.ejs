@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Admin Login</title>
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Materialize  Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Sweet Alerts CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
+
+    <!-- Datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+
+
+    <div class="ctrlqFormContentWrapper" id="app">
+        <div class="ctrlqHeaderMast"></div>
+        <div class="ctrlqCenteredContent">
+            <div class="ctrlqFormCard">
+                <div class="ctrlqAccent"></div>
+                <div class="ctrlqFormContent">
+    								<h3>Admin Login</h3>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="name" name="name" type="text" class="validate" data-error="#e1" required>
+                            <label for="name">Username</label>
+                            <div id="e1"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">security</i>
+                            <input id="password" name="name" type="password" class="validate" data-error="#e1" required>
+                            <label for="password">Password</label>
+                            <div id="e1"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col m12 s12" align="center">
+                            <a href="./" class="waves-effect waves-light btn-large red accent-2"><i class="material-icons right">cancel</i>Cancel</a>
+                            <button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons right">input</i>Sign-in</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <!-- Jquery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+  <!-- Materialize Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+  <!-- Jquery Validations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.min.js"></script>
+
+  <!-- Main JS -->
+  <script src="form.js"></script>
+  </body>
+</html>
