@@ -105,4 +105,21 @@ module.exports = function (app){
 	    res.render('login')
 	});
 
+  //Get particular feedback from database using email address.
+	app.get('api/getAll/:email', urlencodedParser, function(req, res){
+	  Feedback.find({ "email" : req.params.email }, function(err, data) {
+      if(err) throw err;
+      res.json(data);
+    });
+  });
+
+  //Get particular general feedback from database using email address.
+	app.get('api/getgenAll/:email', urlencodedParser, function(req, res){
+	  GenFeedback.find({ "email" : req.params.email }, function(err, data) {
+      if(err) throw err;
+      res.json(data);
+    });
+  });
+
+
 };
