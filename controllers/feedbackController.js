@@ -122,10 +122,10 @@ module.exports = function (app){
   });
 
   //Get particular general feedback from database using email address.
-  app.delete('/api/getAll/:email', urlencodedParser, function(req, res){
-	  Feedback.remove({ "email" : req.params.email }, function(err, data) {
+  app.delete('/api/getAll/:id', urlencodedParser, function(req, res){
+	  Feedback.remove({ "_id" : req.params.id }, function(err, data) {
       if(err) throw err;
-      res.json(data);
+      res.json({ "message": "Successfully Deleted!" });
     });
   });
 
@@ -133,7 +133,7 @@ module.exports = function (app){
   app.delete('/api/getgenAll/:email', urlencodedParser, function(req, res){
 	  GenFeedback.remove({ "email" : req.params.email }, function(err, data) {
       if(err) throw err;
-      res.json(data);
+      res.json({ "message": "Successfully Deleted!" });
     });
   });
 

@@ -44,6 +44,7 @@
                             <th>Email</th>
                             <th>Feedback Type</th>
                             <th>Description</th>
+														<th>Delete?</th>
                         </tr>
                     </thead>
 
@@ -62,6 +63,9 @@
                                 <td>
                                     <%= feedbacks[i].description %>
                                 </td>
+																<td>
+																	<button id="<%= feedbacks[i]._id %>" class="btn-floating waves-effect waves-light red deleteFeedback"><i class="material-icons right">delete_forever</i></button>
+																</td>
                             </tr>
                             <% } %>
                     </tbody>
@@ -83,5 +87,33 @@
 
     <!-- Main JS -->
     <script src="form.js"></script>
+
+		<script type="text/javascript">
+			$('.deleteFeedback').click(function(){
+				var feedId = this.id;
+
+				swal({
+				  title: "Are you sure?",
+				  text: "You will not be able to recover this feedback data!",
+				  type: "warning",
+				  showCancelButton: true,
+				  confirmButtonColor: "#DD6B55",
+				  confirmButtonText: "Yes, delete it!",
+				  closeOnConfirm: false
+				},
+				function(){
+					$.ajax({
+	          type: 'DELETE',
+	          url: '/api/getAll/'+ feedId,
+	          success: function(data){
+	          }
+	        });
+				  swal("Deleted!", "Your imaginary file has been deleted.", "success");
+					setTimeout(function(){ location.reload(); }, 1500);
+				});
+
+
+			});
+		</script>
 </body>
 </html>
