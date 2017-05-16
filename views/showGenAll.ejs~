@@ -18,10 +18,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
 
-    <!-- Datatables -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-
     <!-- Main CSS -->
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
@@ -36,14 +32,22 @@
         <div class="ctrlqFormCard">
             <div class="ctrlqAccent"></div>
             <div class="ctrlqFormContent">
-		<h3>All Feedback Listing</h3>
-                <table class="bordered striped highlight" id="feedTable">
+		<h3>All General Feedback Listing</h3>
+                <table class="bordered striped highlight centered">
                     <thead class="tableHeader">
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Feedback Type</th>
-                            <th>Description</th>
+                            <th colspan="5">General Data</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Recommend</th>
+                            <th>Satisfied</th>
+                            <th>Outcome</th>
+                            <th>Service</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
 
@@ -57,10 +61,19 @@
                                     <%= feedbacks[i].email %>
                                 </td>
                                 <td>
-                                    <%= feedbacks[i].feedType %>
+                                    <%= feedbacks[i].genFeed.recommend %>
                                 </td>
                                 <td>
-                                    <%= feedbacks[i].description %>
+                                    <%= feedbacks[i].genFeed.satisfied %>
+                                </td>
+                                <td>
+                                    <%= feedbacks[i].genFeed.outcome %>
+                                </td>
+                                <td>
+                                    <%= feedbacks[i].genFeed.service %>
+                                </td>
+                                <td>
+                                    <%= feedbacks[i].genFeed.time %>
                                 </td>
                             </tr>
                             <% } %>

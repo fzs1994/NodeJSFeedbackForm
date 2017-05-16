@@ -37,7 +37,7 @@
             <div class="ctrlqAccent"></div>
             <div class="ctrlqFormContent">
 		<h3>All Feedback Listing</h3>
-                <table class="bordered striped highlight" id="feedTable">
+                <table class="bordered striped highlight">
                     <thead class="tableHeader">
                         <tr>
                             <th>Name</th>
