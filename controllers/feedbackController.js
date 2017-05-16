@@ -92,7 +92,7 @@ module.exports = function (app){
 
   // Rendering General Feedbacks data into view table
 	app.get('/getGenAll', urlencodedParser, function(req, res){
-	   	//Get all ther General Feedbacks from MongoDB and return data to view.
+	   	//Get all the General Feedbacks from MongoDB and return data to view.
 	    var commFeedBack = GenFeedback.find(function(err, data){
 	       if(err) throw err;
 	       res.render('showGenAll', {feedbacks: data})
@@ -101,12 +101,12 @@ module.exports = function (app){
 
   // Rendering General Feedbacks data into view table
 	app.get('/login', urlencodedParser, function(req, res){
-	   	//Get all ther General Feedbacks from MongoDB and return data to view.
+	   	//Render login view on /login redirect.
 	    res.render('login')
 	});
 
   //Get particular feedback from database using email address.
-	app.get('api/getAll/:email', urlencodedParser, function(req, res){
+	app.get('/api/getAll/:email', urlencodedParser, function(req, res){
 	  Feedback.find({ "email" : req.params.email }, function(err, data) {
       if(err) throw err;
       res.json(data);
@@ -114,8 +114,24 @@ module.exports = function (app){
   });
 
   //Get particular general feedback from database using email address.
-	app.get('api/getgenAll/:email', urlencodedParser, function(req, res){
+	app.get('/api/getgenAll/:email', urlencodedParser, function(req, res){
 	  GenFeedback.find({ "email" : req.params.email }, function(err, data) {
+      if(err) throw err;
+      res.json(data);
+    });
+  });
+
+  //Get particular general feedback from database using email address.
+  app.delete('/api/getAll/:email', urlencodedParser, function(req, res){
+	  Feedback.remove({ "email" : req.params.email }, function(err, data) {
+      if(err) throw err;
+      res.json(data);
+    });
+  });
+
+  //Get particular general feedback from database using email address.
+  app.delete('/api/getgenAll/:email', urlencodedParser, function(req, res){
+	  GenFeedback.remove({ "email" : req.params.email }, function(err, data) {
       if(err) throw err;
       res.json(data);
     });
