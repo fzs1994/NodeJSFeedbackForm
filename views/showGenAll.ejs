@@ -18,6 +18,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
 
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- Datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
     <!-- Main CSS -->
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
@@ -28,63 +33,66 @@
 
 <div class="ctrlqFormContentWrapper" id="app">
     <div class="ctrlqHeaderMast"></div>
-    <div class="ctrlqCenteredContent">
+    <div class="ctrlqCenteredContentTable">
         <div class="ctrlqFormCard">
             <div class="ctrlqAccent"></div>
             <div class="ctrlqFormContent">
 		<h3>All General Feedback Listing</h3>
-                <table class="bordered striped highlight centered" id="genfeedTable">
-                    <thead class="tableHeader">
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th colspan="5">General Data</th>
-														<th>Delete?</th>
-                        </tr>
-                    </thead>
+							<div class="row">
+								<div class="col l12">
+									<table class="bordered striped highlight centered responsive-table" id="feedTable">
+	                    <thead class="tableHeader">
+	                        <tr>
+	                            <th>Name</th>
+	                            <th>Email</th>
+	                            <th colspan="5">General Data</th>
+															<th>Delete?</th>
+	                        </tr>
+	                    </thead>
 
-                    <tbody>
-											<tr>
-													<td></td>
-													<td></td>
-													<td>Recommend</td>
-													<td>Satisfied</td>
-													<td>Outcome</td>
-													<td>Service</td>
-													<td>Time</td>
-													<td></td>
-											</tr>
-                        <% for(var i=0; i < feedbacks.length; i++){ %>
-                            <tr>
-                                <td>
-                                    <%= feedbacks[i].fullName %>
-                                </td>
-                                <td>
-                                    <%= feedbacks[i].email %>
-                                </td>
-                                <td>
-                                    <%= feedbacks[i].genFeed.recommend %>
-                                </td>
-                                <td>
-                                    <%= feedbacks[i].genFeed.satisfied %>
-                                </td>
-                                <td>
-                                    <%= feedbacks[i].genFeed.outcome %>
-                                </td>
-                                <td>
-                                    <%= feedbacks[i].genFeed.service %>
-                                </td>
-                                <td>
-                                    <%= feedbacks[i].genFeed.time %>
-                                </td>
-																<td>
-																	<button id="<%= feedbacks[i]._id %>" class="btn-floating waves-effect waves-light red deleteFeedback"><i class="material-icons right">delete_forever</i></button>
-																</td>
-                            </tr>
-                            <% } %>
-                    </tbody>
-                </table>
-
+	                    <tbody>
+												<tr>
+														<td></td>
+														<td></td>
+														<td>Recommend</td>
+														<td>Satisfied</td>
+														<td>Outcome</td>
+														<td>Service</td>
+														<td>Time</td>
+														<td></td>
+												</tr>
+	                        <% for(var i=0; i < feedbacks.length; i++){ %>
+	                            <tr>
+	                                <td>
+	                                    <%= feedbacks[i].fullName %>
+	                                </td>
+	                                <td>
+	                                    <%= feedbacks[i].email %>
+	                                </td>
+	                                <td>
+	                                    <%= feedbacks[i].genFeed.recommend %>
+	                                </td>
+	                                <td>
+	                                    <%= feedbacks[i].genFeed.satisfied %>
+	                                </td>
+	                                <td>
+	                                    <%= feedbacks[i].genFeed.outcome %>
+	                                </td>
+	                                <td>
+	                                    <%= feedbacks[i].genFeed.service %>
+	                                </td>
+	                                <td>
+	                                    <%= feedbacks[i].genFeed.time %>
+	                                </td>
+																	<td>
+																		<button id="<%= feedbacks[i]._id %>" class="btn-floating waves-effect waves-light red deleteFeedback"><i class="material-icons right">delete_forever</i></button>
+																	</td>
+	                            </tr>
+	                            <% } %>
+	                    </tbody>
+	                </table>
+								</div>
+							</div>
             </div>
         </div>
     </div>
@@ -94,13 +102,13 @@
 
 
 <!-- Jquery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script> -->
 
     <!-- Materialize Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
     <!-- Main JS -->
-    <script src="form.js"></script>
+    <!-- <script src="form.js"></script> -->
 
 		<script type="text/javascript">
 			$('.deleteFeedback').click(function(){
@@ -128,6 +136,15 @@
 
 
 			});
+
+			$(document).ready(function(){
+			    $('#feedTable').DataTable({
+						"aoColumnDefs": [{ "bSortable": false, "aTargets": [ 4 ] },
+			                      { "bSearchable": false, "aTargets": [ 4 ] }]
+					});
+			});
+
+
 		</script>
 </body>
 </html>

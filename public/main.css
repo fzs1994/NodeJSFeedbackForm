@@ -37,6 +37,10 @@ form p {
   margin: auto;
   width: 700px;
 }
+.ctrlqCenteredContentTable{
+  margin: auto;
+  width: 800px;
+}
 .ctrlqFormCard {
   background-color: #fff;
   margin-bottom: 48px;
@@ -68,6 +72,10 @@ form p {
   }
 
   .ctrlqCenteredContent {
+    width: 90%;
+  }
+
+  .ctrlqCenteredContentTable {
     width: 90%;
   }
 }
