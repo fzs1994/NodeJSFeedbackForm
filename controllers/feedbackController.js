@@ -130,8 +130,8 @@ module.exports = function (app){
   });
 
   //Get particular general feedback from database using email address.
-  app.delete('/api/getgenAll/:email', urlencodedParser, function(req, res){
-	  GenFeedback.remove({ "email" : req.params.email }, function(err, data) {
+  app.delete('/api/getgenAll/:id', urlencodedParser, function(req, res){
+	  GenFeedback.remove({ "_id" : req.params.id }, function(err, data) {
       if(err) throw err;
       res.json({ "message": "Successfully Deleted!" });
     });

@@ -13,7 +13,7 @@
 
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    
+
     <!-- Sweet Alerts CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
@@ -39,6 +39,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th colspan="5">General Data</th>
+														<th>Delete?</th>
                         </tr>
                         <tr>
                             <th></th>
@@ -48,6 +49,7 @@
                             <th>Outcome</th>
                             <th>Service</th>
                             <th>Time</th>
+														<th>
                         </tr>
                     </thead>
 
@@ -75,6 +77,9 @@
                                 <td>
                                     <%= feedbacks[i].genFeed.time %>
                                 </td>
+																<td>
+																	<button id="<%= feedbacks[i]._id %>" class="btn-floating waves-effect waves-light red deleteFeedback"><i class="material-icons right">delete_forever</i></button>
+																</td>
                             </tr>
                             <% } %>
                     </tbody>
@@ -90,11 +95,39 @@
 
 <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-    
+
     <!-- Materialize Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
     <!-- Main JS -->
     <script src="form.js"></script>
+
+		<script type="text/javascript">
+			$('.deleteFeedback').click(function(){
+				var feedId = this.id;
+
+				swal({
+				  title: "Are you sure?",
+				  text: "You will not be able to recover this feedback data!",
+				  type: "warning",
+				  showCancelButton: true,
+				  confirmButtonColor: "#DD6B55",
+				  confirmButtonText: "Yes, delete it!",
+				  closeOnConfirm: false
+				},
+				function(){
+					$.ajax({
+	          type: 'DELETE',
+	          url: '/api/getgenAll/'+ feedId,
+	          success: function(data){
+	          }
+	        });
+				  swal("Deleted!", "Your imaginary file has been deleted.", "success");
+					setTimeout(function(){ location.reload(); }, 1500);
+				});
+
+
+			});
+		</script>
 </body>
 </html>
