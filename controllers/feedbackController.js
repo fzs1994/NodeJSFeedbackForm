@@ -39,7 +39,7 @@ module.exports = function (app){
 	app.post('/genfeedback', urlencodedParser, function(req, res){
 	   	//Get data from the view and pass it to the mongoose schema to store it.
 	   	var genFeedData = {
-	   		"fName": req.body.name,
+	   		"fullName": req.body.name,
 	   		"email": req.body.email,
 	   		"feedType": req.body.type,
 	   		"genFeed": {
@@ -60,7 +60,8 @@ module.exports = function (app){
 	   	//Get data from the view and pass it to the mongoose schema to store it.
 	    var commFeedBack = Feedback.find(function(err, data){
 	       if(err) throw err;
-	       res.json(data);
+	       res.render('showAll', {feedbacks: data})
+	       // res.json(data);
 	    });
 	});
 
@@ -68,7 +69,7 @@ module.exports = function (app){
 	   	//Get data from the view and pass it to the mongoose schema to store it.
 	    var commFeedBack = GenFeedback.find(function(err, data){
 	       if(err) throw err;
-	       res.json(data);
+	       res.render('showGenAll', {feedbacks: data})
 	    });
 	});
 

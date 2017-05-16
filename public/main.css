@@ -92,3 +92,8 @@ div.error {
 .card{
   padding: 25px;
 }
+
+.tableHeader{
+  background-color: #292929;
+  color: #fff;
+}
