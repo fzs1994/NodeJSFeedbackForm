@@ -41,19 +41,19 @@
                             <th colspan="5">General Data</th>
 														<th>Delete?</th>
                         </tr>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th>Recommend</th>
-                            <th>Satisfied</th>
-                            <th>Outcome</th>
-                            <th>Service</th>
-                            <th>Time</th>
-														<th>
-                        </tr>
                     </thead>
 
                     <tbody>
+											<tr>
+													<td></td>
+													<td></td>
+													<td>Recommend</td>
+													<td>Satisfied</td>
+													<td>Outcome</td>
+													<td>Service</td>
+													<td>Time</td>
+													<td></td>
+											</tr>
                         <% for(var i=0; i < feedbacks.length; i++){ %>
                             <tr>
                                 <td>
@@ -118,7 +118,7 @@
 				function(){
 					$.ajax({
 	          type: 'DELETE',
-	          url: '/api/getgenAll/'+ feedId,
+	          url: '/getgenAll/'+ feedId,
 	          success: function(data){
 	          }
 	        });

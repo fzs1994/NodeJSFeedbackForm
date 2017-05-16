@@ -121,7 +121,7 @@ module.exports = function (app){
     });
   });
 
-  //Get particular general feedback from database using email address.
+  //Delete particular other feedback from database using feedback ID usin API call.
   app.delete('/api/getAll/:id', urlencodedParser, function(req, res){
 	  Feedback.remove({ "_id" : req.params.id }, function(err, data) {
       if(err) throw err;
@@ -129,8 +129,24 @@ module.exports = function (app){
     });
   });
 
-  //Get particular general feedback from database using email address.
+  //Delete particular general feedback from database using feedback ID usin API call.
   app.delete('/api/getgenAll/:id', urlencodedParser, function(req, res){
+	  GenFeedback.remove({ "_id" : req.params.id }, function(err, data) {
+      if(err) throw err;
+      res.json({ "message": "Successfully Deleted!" });
+    });
+  });
+
+  //Delete particular other feedback from database using feedback ID.
+  app.delete('/getAll/:id', urlencodedParser, function(req, res){
+	  Feedback.remove({ "_id" : req.params.id }, function(err, data) {
+      if(err) throw err;
+      res.json({ "message": "Successfully Deleted!" });
+    });
+  });
+
+  //Delete particular general feedback from database using feedback ID.
+  app.delete('/getgenAll/:id', urlencodedParser, function(req, res){
 	  GenFeedback.remove({ "_id" : req.params.id }, function(err, data) {
       if(err) throw err;
       res.json({ "message": "Successfully Deleted!" });
