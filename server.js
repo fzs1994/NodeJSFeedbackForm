@@ -55,3 +55,7 @@ console.log('The magic happens on port ' + port);
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/app/model/feedbackform.html')
 })
+
+app.use(function (req, res) {
+    res.render('error');
+});
