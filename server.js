@@ -34,9 +34,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-
-
-
 //setting template engine
 app.set('view engine','ejs');
 
@@ -44,7 +41,7 @@ app.set('view engine','ejs');
 app.use(express.static('./public'));
 
 //Firing controllers
-feedbackController(app);
+// feedbackController(app);
 
 // launch ======================================================================
 app.listen(port);

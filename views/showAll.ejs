@@ -25,6 +25,13 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" type="text/css" href="main.css">
+
+		<style media="screen" type="text/css">
+			select{
+				display: inline;
+				width: auto;
+			}
+		</style>
 </head>
 <body>
 
@@ -37,7 +44,14 @@
         <div class="ctrlqFormCard">
             <div class="ctrlqAccent"></div>
             <div class="ctrlqFormContent">
-								<h3>All Feedback Listing</h3>
+								<div class="row">
+									<div class="col l11">
+											<h3>All Feedback Listing</h3>
+									</div>
+									<div class="col l1">
+										<a href="/logout" class="btn btn-floating waves-effect waves-light red" style="margin-top: 25px;" title="Logout"><i class="material-icons">power_settings_new</i></a>
+									</div>
+								</div>
                 <table class="bordered striped highlight" id="feedTable">
                     <thead class="tableHeader">
                         <tr>
