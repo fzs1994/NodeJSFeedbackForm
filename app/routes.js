@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 //Connect to mongoose database: online mLab database
-mongoose.connect('mongodb://objsonresume:ob1jsonresume@ds139761.mlab.com:39761/feedbackform');
+// mongoose.connect('mongodb://objsonresume:ob1jsonresume@ds139761.mlab.com:39761/feedbackform');
 
 //Creating a schema that contains fields of Other types of Feedbacks
 var feedSchema = new mongoose.Schema({
@@ -52,7 +52,7 @@ module.exports = function(app, passport) {
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/getAll', // redirect to the secure profile section
+        successRedirect : '/allFeedbackListing', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -71,7 +71,7 @@ module.exports = function(app, passport) {
     // app.post('/signup', do all our passport stuff here);
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/getAll', // redirect to the secure profile section
+        successRedirect : '/allFeedbackListing', // redirect to the secure profile section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -153,7 +153,7 @@ module.exports = function(app, passport) {
     });
 
     // Rendering Other Feedbacks data into view table
-  	app.get('/getAll', isLoggedIn, function(req, res){
+  	app.get('/allFeedbackListing', isLoggedIn, function(req, res){
   	   	//Get all ther Other Feedbacks from MongoDB and return data to view.
   	    var commFeedBack = Feedback.find(function(err, data){
   	       if(err) throw err;
@@ -162,7 +162,7 @@ module.exports = function(app, passport) {
   	});
 
     // Rendering General Feedbacks data into view table
-  	app.get('/getGenAll', isLoggedIn, function(req, res){
+  	app.get('/allGeneralFeedbackListing', isLoggedIn, function(req, res){
   	   	//Get all the General Feedbacks from MongoDB and return data to view.
   	    var commFeedBack = GenFeedback.find(function(err, data){
   	       if(err) throw err;
